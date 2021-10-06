@@ -2,7 +2,7 @@
   "title": "Random Bouncing Balls",
   "abstract": "Mit dieser Aufgabe lernen Sie Decomposition und die Verwendung von Klassen im Kontext der GraphicsApp kennen.",
   "hasStarterCode": true,
-  "hasSolutionCode": false,
+  "hasSolutionCode": true,
   "solutionComment": "Lösungsvorschlag zur Aufgabenstellung",
   "simpleSolutionComment": "",
   "advancedSolutionComment": "",

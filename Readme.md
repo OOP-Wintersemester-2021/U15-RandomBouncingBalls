@@ -9,7 +9,7 @@ erzeugen.
 
 | Die springenden Bälle sollen so aussehen |
 |:------:|
-| ![image](docs/screenshot_bouncingballs.png) |
+| ![image](./docs/screenshot_bouncingballs.png) |
 
 **Vorgehen**
 

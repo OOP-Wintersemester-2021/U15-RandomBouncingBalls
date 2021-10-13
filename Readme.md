@@ -7,7 +7,9 @@ Geschwindigkeit und Größe sowie eine zufällige Farbe, die sich nach
 jeder Kollision mit einer Wand zu einer anderen zufälligen Farbe ändert. Die Bälle selbst prallen nicht voneinander ab. Verwenden Sie die in der Vorlesung vorgestellte Klasse `Random` um die Zufallswerte zu
 erzeugen.
 
-![image](docs/screenshot_bouncingballs.png)
+| Die springenden Bälle sollen so aussehen |
+|:------:|
+| ![image](docs/screenshot_bouncingballs.png) |
 
 **Vorgehen**
 

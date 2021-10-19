@@ -1,4 +1,4 @@
-# U05-1 | Random Bouncing Balls
+# U15 | Random Bouncing Balls
 
 In diesem Programm beschäftigen Sie sich mit der Klassenmodellierung im Kontext der GraphicsApp.
 Die Aufgabe ist es, zwei Bälle über die Zeichenfläche zu bewegen und sie

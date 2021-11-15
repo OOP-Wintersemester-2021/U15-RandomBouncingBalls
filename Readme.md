@@ -27,11 +27,10 @@ private static final int MAX_DIAMETER = 100;
 
 Wir brauchen folgende Methoden:
 
-- Eine Methode zur Initialisierung eines übergebenen Balls, in der Größe, Farbe, Position und Geschwindigkeit des Balls zufällig bestimmt werden.
-
 - `update (Circle ball, int xSpeed, int ySpeed)` - ändert die Position des übergebenen Balls auf der Basis der übergebenen aktuellen Geschwindigkeit.
 
-- `checkWallCollision (Circle ball)` - überprüft, ob der Ball mit einer der Wände der Zeichenfläche kollidiert. Berührt der Ball eine der Wände, so werden entsprechend Bewegungsrichung und Farbe angepasst.
+- `checkXWallCollision (Circle ball)` - überprüft, ob der Ball mit der linken oder rechten Wand der Zeichenfläche kollidiert. Berührt der Ball eine der Wände, so werden entsprechend Bewegungsrichung und Farbe angepasst.
+- `checkYWallCollision (Circle ball)` - überprüft, ob der Ball mit der oberen oder unteren Wand der Zeichenfläche kollidiert. Berührt der Ball eine der Wände, so werden entsprechend Bewegungsrichung und Farbe angepasst.
 
 Beachten Sie bitte, dass Sie wahrscheinlich weitere Methoden innerhalb der Klasse anlegen müssen.
 

@@ -22,9 +22,10 @@ public class RandomBouncingBalls extends GraphicsApp {
 
     private Random rand;
 
-    private Circle[] randomBalls;
-    private float[] xSpeeds;
-    private float[] ySpeeds;
+    private Circle ball1;
+    private Circle ball2;
+    private float[] ball1Vector;
+    private float[] ball2Vector;
 
     /**
      * the initialize-Methode gets called a single time at the start of the programm
@@ -39,27 +40,29 @@ public class RandomBouncingBalls extends GraphicsApp {
     }
 
     private void setupRandomBalls() {
-        randomBalls = new Circle[BALL_NUMBER];
-        for (int i = 0; i < BALL_NUMBER; i++) {
-            setUpBall(i);
-        }
+        ball1 = setUpBall();
+        ball2 = setUpBall();
     }
 
-    private void setUpBall(int idx) {
+    private Circle setUpBall() {
         int randomRadius = getRandomNumber(MIN_DIAMETER/2, MAX_DIAMETER/2);
         int randomXPos = getRandomNumber(randomRadius, CANVAS_WIDTH - randomRadius);
         int randomYPos = getRandomNumber(randomRadius, CANVAS_HEIGHT - randomRadius);
         Color randomColor = getRandomColor();
-        randomBalls[idx] = new Circle(randomXPos, randomYPos, randomRadius, randomColor);
+        return new Circle(randomXPos, randomYPos, randomRadius, randomColor);
     }
 
+
     private void setUpSpeeds() {
-        xSpeeds = new float[BALL_NUMBER];
-        ySpeeds = new float[BALL_NUMBER];
-        for (int i = 0; i < BALL_NUMBER; i++) {
-            xSpeeds[i] =  getRandomFloat(MIN_BALL_VELOCITY, MAX_BALL_VELOCITY);
-            ySpeeds[i] = getRandomFloat(MIN_BALL_VELOCITY, MAX_BALL_VELOCITY);
-        }
+        ball1Vector = getRandomVector();
+        ball2Vector = getRandomVector();
+    }
+
+    private float[] getRandomVector() {
+        float[] vector = new float[2];
+        vector[0] = getRandomFloat(MIN_BALL_VELOCITY, MAX_BALL_VELOCITY);
+        vector[1] = getRandomFloat(MIN_BALL_VELOCITY, MAX_BALL_VELOCITY);
+        return vector;
     }
 
     private void setupCanvas() {
@@ -93,46 +96,45 @@ public class RandomBouncingBalls extends GraphicsApp {
         drawBalls();
     }
 
+
     private void drawBalls() {
-        for (int i = 0; i < BALL_NUMBER; i++) {
-            drawBall(i);
-        }
+        drawAndUpdateBall(ball1, ball1Vector);
+        drawAndUpdateBall(ball2, ball2Vector);
     }
 
-    private void drawBall(int idx) {
-        Circle ball = randomBalls[idx];
-        update(ball, xSpeeds[idx], ySpeeds[idx]);
-        if(checkXWallCollision(ball)) {
-            xSpeeds[idx] *= -1;
-            ball.setColor(getRandomColor());
-        }
-        if(checkYWallCollision(ball)) {
-            ySpeeds[idx] *= -1;
-            ball.setColor(getRandomColor());
-        }
+    private void drawAndUpdateBall(Circle ball, float[] vector) {
+        update(ball, vector);
+        checkWallCollision(ball, vector);
         ball.draw();
     }
-    
-    private void update(Circle ball, float xSpeed, float ySpeed) {
-        ball.move(xSpeed, ySpeed);
+
+    private void update(Circle ball, float[] vector) {
+        ball.move(vector[0], vector[1]);
     }
 
-    private boolean checkXWallCollision(Circle ball) {
+    private void checkWallCollision(Circle ball, float[] vector) {
+        checkXWallCollision(ball, vector);
+        checkYWallCollision(ball, vector);
+    }
+
+    private void checkXWallCollision(Circle ball, float[] vector) {
         float ballXPos = ball.getXPos();
         float ballRadius = ball.getRadius();
+
         if(ballXPos - ballRadius <= 0 || ballXPos + ballRadius >= CANVAS_WIDTH) {
-            return true;
+            vector[0] *= -1;
+            ball.setColor(getRandomColor());
         }
-        return false;
     }
-    
-    private boolean checkYWallCollision(Circle ball) {
+
+    private void checkYWallCollision(Circle ball, float[] vector) {
         float ballYPos = ball.getYPos();
         float ballRadius = ball.getRadius();
-        if (ballYPos - ballRadius <= 0 || ballYPos + ballRadius >= CANVAS_HEIGHT) {
-            return true;
+
+        if(ballYPos - ballRadius <= 0 || ballYPos + ballRadius >= CANVAS_HEIGHT) {
+            vector[1] *= -1;
+            ball.setColor(getRandomColor());
         }
-        return false;
     }
 
     public static void main(String[] args) {

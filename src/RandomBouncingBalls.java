@@ -1,5 +1,3 @@
-package RandomBouncingBalls;
-
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.colors.Color;
 import de.ur.mi.oop.colors.Colors;
